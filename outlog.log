@@ -89837,3 +89837,39 @@ connect: Network is unreachable
 connect: Network is unreachable
 connect: Network is unreachable
 connect: Network is unreachable
+Traceback (most recent call last):
+  File "/home/pi/LConnectLCD/LawnConnectLCD.py", line 4, in <module>
+    import ephem
+ModuleNotFoundError: No module named 'ephem'
+Traceback (most recent call last):
+  File "/home/pi/LConnectLCD/LawnConnectLCD.py", line 4, in <module>
+    import ephem
+ModuleNotFoundError: No module named 'ephem'
+/home/pi/LConnectLCD/LawnConnectLCD.py:88: RuntimeWarning: This channel is already in use, continuing anyway.  Use GPIO.setwarnings(False) to disable warnings.
+  GPIO.setup(25,GPIO.OUT, initial=GPIO.HIGH)
+/home/pi/LConnectLCD/LawnConnectLCD.py:90: RuntimeWarning: This channel is already in use, continuing anyway.  Use GPIO.setwarnings(False) to disable warnings.
+  GPIO.setup(17,GPIO.OUT, initial=GPIO.HIGH)
+/home/pi/LConnectLCD/LawnConnectLCD.py:92: RuntimeWarning: This channel is already in use, continuing anyway.  Use GPIO.setwarnings(False) to disable warnings.
+  GPIO.setup(5,GPIO.OUT, initial=GPIO.HIGH)
+/home/pi/LConnectLCD/LawnConnectLCD.py:94: RuntimeWarning: This channel is already in use, continuing anyway.  Use GPIO.setwarnings(False) to disable warnings.
+  GPIO.setup(6,GPIO.OUT, initial=GPIO.HIGH)
+/home/pi/LConnectLCD/LawnConnectLCD.py:102: RuntimeWarning: This channel is already in use, continuing anyway.  Use GPIO.setwarnings(False) to disable warnings.
+  GPIO.setup(SPIMOSI, GPIO.OUT)
+/home/pi/LConnectLCD/LawnConnectLCD.py:104: RuntimeWarning: This channel is already in use, continuing anyway.  Use GPIO.setwarnings(False) to disable warnings.
+  GPIO.setup(SPICLK, GPIO.OUT)
+/home/pi/LConnectLCD/LawnConnectLCD.py:105: RuntimeWarning: This channel is already in use, continuing anyway.  Use GPIO.setwarnings(False) to disable warnings.
+  GPIO.setup(SPICS, GPIO.OUT)
+/home/pi/LConnectLCD/LawnConnectLCD.py:88: RuntimeWarning: This channel is already in use, continuing anyway.  Use GPIO.setwarnings(False) to disable warnings.
+  GPIO.setup(25,GPIO.OUT, initial=GPIO.HIGH)
+/home/pi/LConnectLCD/LawnConnectLCD.py:90: RuntimeWarning: This channel is already in use, continuing anyway.  Use GPIO.setwarnings(False) to disable warnings.
+  GPIO.setup(17,GPIO.OUT, initial=GPIO.HIGH)
+/home/pi/LConnectLCD/LawnConnectLCD.py:92: RuntimeWarning: This channel is already in use, continuing anyway.  Use GPIO.setwarnings(False) to disable warnings.
+  GPIO.setup(5,GPIO.OUT, initial=GPIO.HIGH)
+/home/pi/LConnectLCD/LawnConnectLCD.py:94: RuntimeWarning: This channel is already in use, continuing anyway.  Use GPIO.setwarnings(False) to disable warnings.
+  GPIO.setup(6,GPIO.OUT, initial=GPIO.HIGH)
+/home/pi/LConnectLCD/LawnConnectLCD.py:102: RuntimeWarning: This channel is already in use, continuing anyway.  Use GPIO.setwarnings(False) to disable warnings.
+  GPIO.setup(SPIMOSI, GPIO.OUT)
+/home/pi/LConnectLCD/LawnConnectLCD.py:104: RuntimeWarning: This channel is already in use, continuing anyway.  Use GPIO.setwarnings(False) to disable warnings.
+  GPIO.setup(SPICLK, GPIO.OUT)
+/home/pi/LConnectLCD/LawnConnectLCD.py:105: RuntimeWarning: This channel is already in use, continuing anyway.  Use GPIO.setwarnings(False) to disable warnings.
+  GPIO.setup(SPICS, GPIO.OUT)

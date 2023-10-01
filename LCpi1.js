@@ -118,7 +118,7 @@ function handleServerResponse(){
 	}
     else{
 		//alert("not readystate 4")
-		setTimeout('process()',100)
+		setTimeout('process()',500)
 	}
 }
 

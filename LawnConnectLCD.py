@@ -55,7 +55,7 @@ def readadc(adcnum, clockpin, mosipin, misopin, cspin):
 if __name__ == "__main__":
 
     statfile = "status.txt"
-    statfile2 = "status2.txt"
+   # statfile2 = "status2.txt"
 
     # setting up the sunset parameters
     # Place the latitude and logitude degree values into the o.lat and o.long parameters.
@@ -186,7 +186,7 @@ if __name__ == "__main__":
 
  # Only read and write data every 1000 cycles.
     index = 0
-    maxcycles = 10
+    maxcycles = 1
 
 
     while True:
@@ -379,10 +379,10 @@ if __name__ == "__main__":
         if index > maxcycles:
            with open(statfile,'wb') as f:
                pickle.dump((LightOn,Lamp_Calibrate,next_sunset,next_turnoff,peak_read,Lamp_off),f)
-           with open(statfile2,'w') as f:
-               f.write(str(LightOn) + '\n')
-               f.write(str(next_sunset) + '\n')
-               f.write(str(next_turnoff) + '\n')
+           #with open(statfile2,'w') as f:
+           #    f.write(str(LightOn) + '\n')
+           #    f.write(str(next_sunset) + '\n')
+           #    f.write(str(next_turnoff) + '\n')
            index = 0
 
         time.sleep(.5)

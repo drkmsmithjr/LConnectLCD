@@ -22,8 +22,8 @@ cgitb.enable()
 def printHTTPheader():
     print ("Content-type: text/html\n")
 
-statfile = "/home/pi/LConnect/status.txt" 
-statfile3 = "/home/pi/LConnect/status3.txt" 
+statfile = "/home/pi/LConnectLCD/status.txt" 
+#statfile3 = "/home/pi/LConnectLCD/status3.txt" 
 dateformat = "%d-%m-%y: %I:%M %p"   
 
 
