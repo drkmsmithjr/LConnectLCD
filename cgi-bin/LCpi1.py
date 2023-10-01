@@ -20,7 +20,7 @@ cgitb.enable()
 # print an HTTP header
 #
 def printHTTPheader():
-    print "Content-type: text/html\n"
+    print ("Content-type: text/html\n")
 
 statfile = "/home/pi/LConnect/status.txt" 
 statfile3 = "/home/pi/LConnect/status3.txt" 
@@ -35,7 +35,7 @@ def main():
     # Line 1: Main Switch; Line 2: Brew Switch: Line 3: sTeam switch
     while True:
         try:
-            with open(statfile,'r') as f:
+            with open(statfile,'rb') as f:
                LC_ON, Lamp_Calibrate, next_sunset, next_turnoff, peak_read,Lamp_off = pickle.load(f)
             break 
         except:
@@ -53,7 +53,7 @@ def main():
     # We will try to wait if there is an issue with write
     while True:
         try:
-            with open(statfile,'w') as f:
+            with open(statfile,'wb') as f:
                pickle.dump((LC_ON, Lamp_Calibrate, next_sunset,next_turnoff,peak_read,Lamp_off),f)
             break
         except:
@@ -73,7 +73,7 @@ def main():
     # now print the AJAX information
 
     printHTTPheader()
-    print a
+    print (a)
 
   
 if __name__=="__main__":

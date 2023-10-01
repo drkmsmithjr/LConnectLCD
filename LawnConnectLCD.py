@@ -10,18 +10,6 @@ import random
 import pickle
 import math
 #this file has your account info
-# Parameters you need to supply Taccount, Ttoken, Tnumber, To_number
-#
-# wehre to put the twillo account information
-#Taccount= 'twillo account'
-#Ttoken ='twillo token'
-#Tnumber = 'Twillo number'
-#To_number = 'NUMBER TO CALL'
-from twilloaccount import *
-
-# twillo account:  password:  ...      username: user@gmail.com
-from twilio.rest import TwilioRestClient
-client = TwilioRestClient(account=Taccount, token=Ttoken)
 
 
 # read SPI data from MCP3008 chip, 8 possible adc's (0 thru 7)
@@ -185,11 +173,11 @@ if __name__ == "__main__":
             next_turnoff = temp
             print(temp)
 
-    print ephem.localtime(o.next_setting(s))
+    print (ephem.localtime(o.next_setting(s)))
 
     # reset the status file with the inital values.
     # this file is communicated to the web page.
-    with open(statfile,'w') as f:
+    with open(statfile,'wb') as f:
             pickle.dump((LightOn,Lamp_Calibrate,next_sunset,next_turnoff,peak_read,Lamp_off),f)
     TimeToOff = 0
 
@@ -198,7 +186,7 @@ if __name__ == "__main__":
 
  # Only read and write data every 1000 cycles.
     index = 0
-    maxcycles = 1
+    maxcycles = 10
 
 
     while True:
@@ -208,7 +196,7 @@ if __name__ == "__main__":
         if index > maxcycles :
             while True:
                try:
-                   with open(statfile,'r') as f:
+                   with open(statfile,'rb') as f:
                       LightOn, Lamp_Calibrate, next_sunset, next_turnoff, peak_read, Lamp_off = pickle.load(f)
                    break
                except:
@@ -222,8 +210,8 @@ if __name__ == "__main__":
         if LightOn == False:
             if datetime.datetime.now() > (next_sunset + datetime.timedelta(seconds=turn_on_delay)):
                 LightOn = True
-                print "The lights were turn on"
-                print LightOn
+                print ("The lights were turn on")
+                print (LightOn)
                 #GPIO.setup(25,GPIO.OUT, initial=GPIO.LOW)
                 # using a 65 second delay to ensure next_setting picks tomorrow
                 b = datetime.datetime.now() + datetime.timedelta(hours = 24)
@@ -231,15 +219,15 @@ if __name__ == "__main__":
         else:
             if datetime.datetime.now() > next_turnoff:
                 LightOn = False
-                print "The lights were turned off"
-                print LightOn
+                print("The lights were turned off")
+                print( LightOn)
                 #GPIO.setup(25,GPIO.OUT, initial=GPIO.HIGH)
                 next_turnoff = next_sunset + datetime.timedelta(seconds=(turn_on_delay+OnDuration))
 
-        print "The Lights are:     %s" %LightOn
-        print "The next sunset:    %s" %next_sunset
-        print "the next sunrise:   %s" %next_sunrise
-        print "the next turnoff:   %s" %next_turnoff
+        print( "The Lights are:     %s" %LightOn)
+        print( "The next sunset:    %s" %next_sunset)
+        print( "the next sunrise:   %s" %next_sunrise)
+        print( "the next turnoff:   %s" %next_turnoff)
         peak_read = 0
         trim_pot = 0
 
@@ -306,12 +294,12 @@ if __name__ == "__main__":
 
         # adjust the peak_save parameter if the differential is only one value
 
-        print "the peak read:      %s" %peak_read
-        print "the peak save read: %s" %peak_save
-        print "the average read:   %s" %ave_read
-        print "average dc read:    %s" %ave_neg_adc
-        print "peak dc value:      %s" %peak_neg_adc
-        print "min dc value:       %s" %min_neg_adc
+        print( "the peak read:      %s" %peak_read)
+        print( "the peak save read: %s" %peak_save)
+        print( "the average read:   %s" %ave_read)
+        print( "average dc read:    %s" %ave_neg_adc)
+        print( "peak dc value:      %s" %peak_neg_adc)
+        print( "min dc value:       %s" %min_neg_adc)
 
         #Set the Relay(s) with the state of The LightOn parameter
         if LightOn == True:
@@ -352,7 +340,7 @@ if __name__ == "__main__":
            # if the difference is > -1 then use envenlope
 
            #peak_diff = abs(peak_diff)
-           print "Peak Difference with save: %s" %peak_diff
+           print( "Peak Difference with save: %s" %peak_diff)
            if (Lamp_off==False):
                if (peak_diff >= Lamp_Off_Threshold):
                    Lamp_off = True
@@ -360,9 +348,9 @@ if __name__ == "__main__":
                    lamp_save_ref = peak_save
                    #trail account
                    try:
-                      client.messages.create(to=To_number,from_=Tnumber,body="A lawn light was burnt out!")
+                      print("Lawn Light is out")
                    except:
-                      print "Twilio Didn't Work: A Lawn Light Burnt Out"
+                      print( "Twilio Didn't Work: A Lawn Light Burnt Out")
                    text_timer = time.time()+oneday
            else:
                # allow the lights to be fixed live with hysterisis
@@ -374,22 +362,22 @@ if __name__ == "__main__":
                if time.time()>text_timer :
                #text again
                    try:
-                      client.messages.create(to=To_number,from_=Tnumber,body="A lawn light was burnt out!")
+                      print("We need to send MQTT message that LCD lamp out")
                    except:
-                      print "Twilio Didn't Work: A Lawn Light Burnt Out"
+                      print( "Twilio Didn't Work: A Lawn Light Burnt Out")
                    #reset timer
                    text_timer = time.time()+oneday
 
         print ("lamp burnt: %s" % Lamp_off)
         if (Lamp_off):
-           print "lamp_save_trig", lamp_save_trig
-           print "lamp_save_ref", lamp_save_ref
+           print ("lamp_save_trig", lamp_save_trig)
+           print ("lamp_save_ref", lamp_save_ref)
 
-        print "The index = %s" %index
+        print ("The index = %s" %index)
 
 
         if index > maxcycles:
-           with open(statfile,'w') as f:
+           with open(statfile,'wb') as f:
                pickle.dump((LightOn,Lamp_Calibrate,next_sunset,next_turnoff,peak_read,Lamp_off),f)
            with open(statfile2,'w') as f:
                f.write(str(LightOn) + '\n')
