@@ -16,7 +16,7 @@ def readadc(adcnum, clockpin, mosipin, misopin, cspin):
 
         commandout = adcnum
         commandout |= 0x18  # start bit + single-ended bit
-	commandout &= 0xF7  # make the differential bit zero (bit 4) for diff adc (ch0-ch1)
+        commandout &= 0xF7  # make the differential bit zero (bit 4) for diff adc (ch0-ch1)
         commandout <<= 3    # we only need to send 5 bits here
         for i in range(5):
                 if (commandout & 0x80):
@@ -78,8 +78,8 @@ while True:
         if DEBUG:
                 #print "trim_pot:", trim_pot
                 #print "last_read", last_read
-                print "voltage:", (int ((3.3*trim_pot/1024.00)*10000))/10000.00
-                print "peak_voltage:", (int ((3.3*peak_read/1024.00)*10000))/10000.00
+                print( "voltage:", (int ((3.3*trim_pot/1024.00)*10000))/10000.00)
+                print( "peak_voltage:", (int ((3.3*peak_read/1024.00)*10000))/10000.00)
 
         #if ( pot_adjust > tolerance ):
         trim_pot_changed = True
